@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.text {
+    text-align: center;
+    color: teal;
+}
+
+.boxing {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+}
+
+.button {
+    width: 200px;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    background-color: teal;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 50px 0;
+}
+
+
+
+.box {
+    height: 50px;
+    width: 50px;
+    border: 1px black solid;
+}
+
+
+
+.box.blu {
+    background-color: teal;
+}
+
+.box.red {
+    background-color: red;
+}
+
+.facile {
+    width: 500px;
+}
+
+.medio {
+    width: 450px;
+}
+
+.difficile {
+    width: 370px;
+}
