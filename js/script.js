@@ -26,30 +26,35 @@ cioè il numero di volte che l’utente ha cliccato su una cella che non era una
 */
 
 function generaBombe(minNumero, maxNumero) {
-    return Math.round(Math.random() * (maxNumero - minNumero)) + minNumero;
-}
+    const bombe = [];
 
-const numberoDiBombe = [];
-
-while(numberoDiBombe.length < 16) {
-    const randomNum = generaBombe(1, 100);
-    if (!numberoDiBombe.includes(randomNum)) {
-        numberoDiBombe.push(randomNum)
+    while(bombe.length < 16) {
+        const randomNum = Math.round(Math.random() * (maxNumero - minNumero)) + minNumero;;
+        if (!bombe.includes(randomNum)) {
+            bombe.push(randomNum)
+        }
     }
+
+    return bombe;
 }
 
-console.log(numberoDiBombe)
 
-function createNewBox(container, i, numberoDiBombe) {
+function createNewBox(container, i, bombe) {
     const newBox = document.createElement('div');
     newBox.className = 'box';
     newBox.innerText = i;
-    newBox.innerText = numberoDiBombe;
-    container.append(newBox);
     
-    newBox.addEventListener('click', function() {
-        this.classList.toggle('blu');
-    })
+    if (bombe.includes(i)) {
+        newBox.addEventListener('click', function() {
+            this.classList.toggle('red');
+        })
+    }else {
+        newBox.addEventListener('click', function() {
+            this.classList.toggle('blu');
+        })
+    }
+
+    container.append(newBox);
 }
 
 const boxingHtml = document.querySelector('.boxing');
@@ -58,9 +63,10 @@ const buttonOne = document.querySelector('.button.box1');
 
 buttonOne.addEventListener('click', function() {
     boxingHtml.classList.add('facile');
-    boxingHtml.innerHTML = ''
+    boxingHtml.innerHTML = '';
+    let bombe = generaBombe(1, 100)
     for (let i = 1; i <= 100; i++) {
-        createNewBox(boxingHtml, i, numberoDiBombe);
+        createNewBox(boxingHtml, i, bombe);
     }
 
 })
@@ -69,9 +75,10 @@ const buttonTwo = document.querySelector('.button.box2');
 
 buttonTwo.addEventListener('click', function() {
     boxingHtml.classList.add('medio');
-    boxingHtml.innerHTML = ''
+    boxingHtml.innerHTML = '';
+    let bombe = generaBombe(1, 81)
     for (let i = 1; i <= 81; i++) {
-        createNewBox(boxingHtml, i);
+        createNewBox(boxingHtml, i, bombe);
     }
 })
 
@@ -79,9 +86,10 @@ const buttonThree = document.querySelector('.button.box3');
 
 buttonThree.addEventListener('click', function() {
     boxingHtml.classList.add('difficile');
-    boxingHtml.innerHTML = ''
+    boxingHtml.innerHTML = '';
+    let bombe = generaBombe(1, 49)
     for (let i = 1; i <= 49; i++) {
-        createNewBox(boxingHtml, i);
+        createNewBox(boxingHtml, i, bombe);
     }
 })
 
