@@ -47,6 +47,7 @@ function createNewBox(container, i, bombe) {
     if (bombe.includes(i)) {
         newBox.addEventListener('click', function() {
             this.classList.toggle('red');
+            //boxingHtml.innerHTML = 'hai perso';
         })
     }else {
         newBox.addEventListener('click', function() {
