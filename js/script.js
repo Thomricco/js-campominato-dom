@@ -25,33 +25,32 @@ Al termine della partita il software deve comunicare il punteggio,
 cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
 */
 
-function createNewBox(container, i) {
+function generaBombe(minNumero, maxNumero) {
+    return Math.round(Math.random() * (maxNumero - minNumero)) + minNumero;
+}
+
+const numberoDiBombe = [];
+
+while(numberoDiBombe.length < 16) {
+    const randomNum = generaBombe(1, 100);
+    if (!numberoDiBombe.includes(randomNum)) {
+        numberoDiBombe.push(randomNum)
+    }
+}
+
+console.log(numberoDiBombe)
+
+function createNewBox(container, i, numberoDiBombe) {
     const newBox = document.createElement('div');
     newBox.className = 'box';
     newBox.innerText = i;
+    newBox.innerText = numberoDiBombe;
     container.append(newBox);
     
     newBox.addEventListener('click', function() {
         this.classList.toggle('blu');
     })
 }
-
-function getRandom (min, max) {
-    return Math.round(Math.random() * (max - min)) + min;
-}
-
-const numbers = [];
-
-while(numbers.length < 16) {
-    const randomNum = getRandom(1, 100);
-    if (!numbers.includes(randomNum)) {
-        numbers.push(randomNum)
-    }
-}
-
-console.log(numbers)
-
-
 
 const boxingHtml = document.querySelector('.boxing');
 
@@ -61,7 +60,7 @@ buttonOne.addEventListener('click', function() {
     boxingHtml.classList.add('facile');
     boxingHtml.innerHTML = ''
     for (let i = 1; i <= 100; i++) {
-        createNewBox(boxingHtml, i);
+        createNewBox(boxingHtml, i, numberoDiBombe);
     }
 
 })
